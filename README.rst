@@ -35,7 +35,7 @@ What's Next ?
 See Also
 --------
 
-* `ubuntu-tweak <http://ubuntu-tweak.com/`_ a similar project that is more user-friendly.
+* `ubuntu-tweak <http://ubuntu-tweak.com/>`_ a similar project that is more user-friendly.
 
 Tweaking
 --------
