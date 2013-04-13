@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+cd "$LU_PATH"
+
+listing=/tmp/$$-list
+tmpfile=/tmp/$$-tmp
+trap "rm -f '/tmp/$$-*' 2>/dev/null" INT TERM EXIT
+
+# Functions ====================================================================
+
+setup()
+{
+  techo 'generating scripts menu entries ...'
+  entries=''
+  for dir in ../*; do
+    if [ -d $dir -a -d $dir/SetupScripts ]; then
+      for file in $dir/SetupScripts/*; do
+        scriptName=`basename $file`
+        mecho "adding $scriptName entry ..."
+        . $file
+        scriptDescription=$(eval "echo \${${scriptName}Description}")
+        if ${scriptName}Status; then status='[OK]'; else status='[  ]'; fi
+        entries="$entries$scriptName \"$status $scriptDescription\" off\n"
+      done
+    fi
+  done
+  echo $e_ $entries | sort > scripts-entries.list
+
+  techo 'generating packages menu entries ...'
+  entries=''
+  selections=`dpkg -l`
+  while read package description
+  do
+    if [ "$package" ]; then
+      if echo "$selections" | grep -q "^ii *$package "
+      then status='on'
+      else status='off'
+      fi
+      mecho "adding $package entry ..."
+      entries="$entries$package \"$description\" $status\n"
+    fi
+  done < packages-descriptions.list
+  echo $e_ $entries > packages-entries.list
+}
+
+update()
+{
+  techo 'updating packages descriptions ...'
+  local descriptions=''
+  while read rating package resume
+  do
+    if [ "$rating" = '1' ]; then
+      entry=`apt-cache search "^$package$" | sed 's:- ::;s:"::g'`
+      #previously : `apt-cache show $package | grep Description | sed 's:"::g'`
+      if [ "$entry" ]; then
+        descriptions="$descriptions$entry\n"
+      else
+        recho "[WARNING] Unable to find package description for '$package'"
+      fi
+    fi
+  done < packages-names.list
+  echo $e_ $descriptions > packages-descriptions.list
+}
+
+packages()
+{
+  #tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+  #trap "rm -f $tempfile" 0 1 2 5 15
+  $DIALOG --backtitle "Customize your installation" \
+	        --title "Logiciels Ubuntu, packages menu by David Fischer (2011)" --clear \
+          --checklist "Please select the packages that you may find usefull for you" 60 120 50 \
+          --file "packages-entries.list" 2> packages-selections.list
+  selections=''
+  sed -i -e 's:"::g;s:\\::g;s: :\n:g' packages-selections.list
+  while read package
+  do
+    if ! isInstalled $package; then
+      selections="$selections $package"
+    fi
+  done < packages-selections.list
+  if [ "$selections" != '' ]; then
+    script="$HOME/packages-selections-install.sh"
+    echo "$udo apt-get -f install $selections || exit 1" > "$script"
+    sh "$script" || xecho "$script failed, you can edit & run it manually to fix this"
+    generatePackagesEntries
+  fi
+}
+
+scripts()
+{
+  $DIALOG --backtitle "Customize your installation" \
+	      --title "Logiciels Ubuntu, scripts menu by David Fischer (2011)" --clear \
+          --checklist "Please select the setup scripts that you think they are usefull for you" 60 120 50 \
+          --file "scripts-entries.list" 2> scripts-selections.list
+
+  selections=`cat scripts-selections.list | sed 's:"::g'`
+  if [ "$selections" != '' ]; then
+    recho "you will execute this(these) script(s) $selections"
+    yesOrNo 0 "ok to continue"
+    if [ $REPLY -eq $true ]; then
+      for script in $selections
+      do
+        techo "executing $script ..."
+        $script || exit 1
+        cd "$LU_PATH"
+      done
+    fi
+    generateScriptsEntries
+  fi
+}
+
+# Main loop ====================================================================
+
+setup
+
+autoInstall dialog dialog
+
+while :
+do
+  # menu display -------------------------------------------------------------
+
+  $DIALOG --backtitle "Customize your setup" \
+          --title "Logiciels Ubuntu by David Fischer (2013)" --clear \
+          --menu "Main menu" 60 120 50    \
+  update   'Update packages descriptions' \
+  packages 'Display packages menu'        \
+  scripts  'Display scripts  menu' 2> $tmpfile
+
+  selections=$(cat $tmpfile)
+  if [ "$selections" = '' ]; then
+    exit
+  fi
+  $selections
+done

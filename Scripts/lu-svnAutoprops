@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+#lu-svnAutoprops()
+{
+  techo "Ubuntu's Softwares Setup Menu [Packages and Scripts]"
+  techo '---------------------------- copyright David Fischer'
+  techo ''
+  pecho 'Update files properties TODO'
+  pecho ''
+
+  if [ $# -ne 1 ]; then
+    xecho "Usage: `basename $0` basePath"
+  fi
+
+  basePath=$1
+
+  if [ ! -d "$basePath" ]; then
+    xecho "Unable to find path 'basePath' !"
+  fi
+
+  # FIXME handle all properties (like svn:executable, svn:keywords)
+  while read name equal prop
+  do
+    if [ "$name" -a "$equal" = '=' -a "$prop" ]; then
+      eolStyle=`expr match "$prop" '.*svn:eol-style=\([^; ]*\).*'`
+      mimeType=`expr match "$prop" '.*svn:mime-type=\([^; ]*\).*'`
+      if   [ "$eolStyle" ]; then p='svn:eol-style'; v=$eolStyle; d='svn:mime-type'
+      elif [ "$mimeType" ]; then p='svn:mime-type'; v=$mimeType; d='svn:eol-style'
+      else
+        recho "Unhandled svn property for line : $name $equal $prop"
+      fi
+      mecho "$name -> setting $p:$v ..."
+      find "$basePath" -type f -name "$name" \
+        -exec svn propset --force "$p" "$v" {} \; \
+        -exec svn propdel "$d" {} \;
+    fi
+  done < $LU_PATH/SetupFiles/svn_autoprops
+
+#  count=1
+#  savedIFS=$IFS
+#  IFS=';'
+#  while read name type eol mime keywords executable
+#  do
+#    if [ $count -eq 1 ]; then count=2; continue; fi
+#    if [ ! "$name" ]; then
+#      xecho "Line $count : Name must be set"
+#    fi
+#    if [ "$eol" -a "$mime" ]; then
+#      xecho "Line $count : Can't set an eol-style and mime-type at the same time"
+#    fi
+#    if [ "$executable" != 'yes' -a "$executable" != 'no' ]; then
+#      xecho "Line $count : Executable must be set to yes or no"
+#    fi
+#    if [ "$eol" ]; then
+#      find "$basePath" -type f  -not -path ".svn" -a -not -path ".git" -a -name "$name" -exec \
+#        svn propset --force 'svn:eol-style' "$eol" {} \; -exec svn propdel 'svn:mime-type' {} \;
+#      find "$basePath" -type f -not -path ".svn" -a -not -path ".git" -a -not -name "*\.*" | \
+#      while read file
+#      do
+#        if file "$file" | grep -q "$type"; then
+#          svn propset --force 'svn:eol-style' "$eol" "$file"
+#          svn propdel 'svn:mime-type' "$file" 2>/dev/null
+#        fi
+#      done
+#    elif [ "$mime" ]; then
+#      find "$basePath" -type f  -not -path ".svn" -a -not -path ".git" -a -name "$name" -exec \
+#        svn propset --force 'svn:mime-type' "$mime" {} \; -exec svn propdel 'svn:eol-style' {} \;
+#      find "$basePath" -type f  -not -path ".svn" -a -not -path ".git" -a -not -name "*\.*" | \
+#      while read file
+#      do
+#        if file "$file" | grep -q "$type"; then
+#          svn propset --force 'svn:mime-type' "$mime" "$file"
+#          svn propdel 'svn:eol-style' "$file" 2>/dev/null
+#        fi
+#        echo "$file"
+#        file "$file"
+#      done
+#    else
+#      xecho "Line $count : At least eol-style or mime-type must be set"
+#    fi
+#    count=$((count+1))
+#  done < $LU_PATH/SetupFiles/svn_autoprops.csv
+#  IFS=$savedIFS
+
+#  autoprops="$LU_PATH/SetupFiles/svn_autoprops.csv"
+#  find "$basePath" -type f -not -path ".svn" -not -path ".git" | while read file
+#  do
+#    name=$(basename "$file")
+#    extension=${base##*.}
+#    if [ "$extension" ]; then
+#      line=$(grep "[^;]*;$extension;" "$autoprops")
+#    else
+#      type=$(file "$file")
+#      # FIXME this is a hack ...
+#      if   echo $type | grep -q 'ASCII'; then type='ASCII'
+#      elif echo $type | grep -q 'XML';   then type='XML'
+#      elif echo $type | grep -q 'shell'; then type='shell'
+#      line=$(grep "[^;]*;[^;]*;$type;" "$autoprops")
+#    fi
+#    if [ ! "$line" ]; then
+#      xecho "Unable to detect file type for : $file"
+#    fi
+#    
+#  done
+
+#  while read name type eol mime keywords executable
+#  do
+#    if [ ! "$name" ]; then
+#      xecho "Line $count : Name must be set"
+#    fi
+#    if [ "$eol" -a "$mime" ]; then
+#      xecho "Line $count : Can't set an eol-style + mime-type at the same time"
+#    fi
+#    if [ "$executable" != 'yes' -a "$executable != 'no' ]; then
+#      xecho "Line $count : Executable must be set to yes or no"
+#    fi
+#    if [ "$eol" ]; then
+#      svn propset --force 'svn:eol-style' "$eol"
+#    elif [ "$mime" ]; then
+#    else
+#      xecho "Line $count : Eol-style or mime-type must be set"
+#    fi
+
+#    if [ "$name" -a "$equal" = '=' -a "$prop" ]; then
+#      eolStyle=`expr match "$prop" '.*svn:eol-style=\([^; ]*\).*'`
+#      mimeType=`expr match "$prop" '.*svn:mime-type=\([^; ]*\).*'`
+#      if   [ "$eolStyle" ]; then p='svn:eol-style'; v=$eolStyle; d='svn:mime-type'
+#      elif [ "$mimeType" ]; then p='svn:mime-type'; v=$mimeType; d='svn:eol-style'
+#      else
+#        recho "Unhandled svn property for line : $name $equal $prop"
+#      fi
+#      mecho "$name -> setting $p:$v ..."
+#      find "$basePath" -type f -name "$name" | while read file
+#      do
+#        svn propset --force "$p" "$v" "$file"
+#        svn propdel "$d" "$file" 2>/dev/null
+#      done
+#    fi
+#    count=$((count+1))
+#  done < $LU_PATH/SetupFiles/svn_autoprops.csv
+}

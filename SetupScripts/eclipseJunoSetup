@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+eclipseJunoSetupDescription="Eclipse Juno IDE for Java developers"
+eclipseJunoSetupStatus()
+{
+  if which eclipse | grep -q local; then return $true; else return $false; fi
+}
+eclipseJunoSetup()
+{
+  if  [ "`uname -a | grep _64`" ]
+  then bits='linux-gtk-x86_64.tar.gz'
+  else bits='linux-gtk.tar.gz'
+  fi
+  content='export ECLIPSE_HOME="/usr/local/lib/eclipse/eclipse"; /usr/local/lib/eclipse/eclipse'
+  eclipse=''
+  while [ ! "$eclipse" ]
+  do
+    find "$HOME" -type f -iname "eclipse-java-juno*$bits" 2>/dev/null > $listing
+    if [ `wc -l $listing | cut -d' ' -f1` -ne 1 ]; then
+     echo 'you must download the eclipse java ide'
+     firefox 'http://www.eclipse.org/downloads/'
+     pause
+    else
+      eclipse=`cat $listing`
+    fi
+  done
+  cd `dirname "$eclipse"` || exit 1
+  tar -zxvf "$eclipse" || exit 1
+  $udo rm -rf /usr/local/lib/eclipse
+  $udo mv eclipse /usr/local/lib/ || exit 1
+  $udo sh -c "echo '$content' > /usr/local/bin/eclipse"
+  $udo chmod +x /usr/local/bin/eclipse
+}

@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+#lu-replaceContent()
+{
+  techo "Ubuntu's Softwares Setup Menu [Packages and Scripts]"
+  techo '---------------------------- copyright David Fischer'
+  techo ''
+  pecho 'Sed files content to replace a pattern with a substitution string'
+  pecho 'Remark : .svn and .git paths are avoided !'
+  pecho ''
+
+  case $# in
+  2 )  path='.'; name='*'; content=$1; substitution=$2; extra='' ;;
+  4 )  path=$1;  name=$2;  content=$3; substitution=$4; extra='' ;;
+  5 )  path=$1;  name=$2;  content=$3; substitution=$4; extra=$5 ;;
+  * )
+    xecho "Usage: `basename $0` content substitution -or- path filename content substitution (find extra args)" ;;
+  esac
+
+  if   ! echo "$content$substitution" | grep '/' > /dev/null; then e='/'
+  elif ! echo "$content$substitution" | grep '#' > /dev/null; then e='#'
+  elif ! echo "$content$substitution" | grep '@' > /dev/null; then e='@'
+  elif ! echo "$content$substitution" | grep ':' > /dev/null; then e=':'
+  else
+    xecho 'FIXME neither /, #, @ nor : is usable as escapement character'
+  fi
+
+  find "$path" -path "*/.svn/*" -prune -o \
+               -path "*/.git/*" -prune -o \
+               -type f -name "$name" $extra \
+               -exec sed -i -e "s$e$content$e$substitution${e}g" {} \;
+}

@@ -1,0 +1,218 @@
+0 SYNTAXE
+0
+0 t : une ligne de catégorie (titre), pas encore utilisé par le menu (FIXME)
+0 0 : une ligne nom d'un paquet désactivé mais quand même conservé ici !
+0 1 : une ligne nom d'un paquet disponible dans logicielsUbuntu->packagesMenu
+0 Remarques :
+0 > Veuillez ne pas utilise de TAB !
+0 > Le menu afficher la description extraite à partir de dpkg et non la vôtre,
+0   cette dernière étant utile pour ceux qui voudraient toucher à cette liste !
+0
+0 LA LISTE
+0
+t preferences
+1 compiz-fusion-plugins-extra          effects supplémentaires compiz
+1 compizconfig-settings-manager        configurateur de compiz
+0 gpointing-device-settings            gestionnaire de pavé tactile
+1 myunity                              configuration d'unity
+0
+t administration
+0 autopsy                              logiciel de forensik
+0 debootrap                            pour astuce live cd personnalisé
+0 squashfs-tools                       pour astuce live cd personnalisé
+1 gparted                              éditeur de partitions
+1 gsmartcontrol                        Interface visuel pour S.M.A.R.T
+1 iftop                                statistiques des interfaces réseau
+1 iotop                                statistiques des accès (i/o)
+0 md5deep                              vérificateur d'intégrité fichiers
+1 preload                              preload (smart caching) of applications
+1 traceroute                           commande réseau traceroute
+0
+t nautilus
+1 nautilus-actions                     raccourcis supplémentaires
+0 nautilus-clamscan                    anti virus ClamAV
+1 nautilus-open-terminal               raccourci pour ouvrir un terminal
+1 nautilus-script-audio-convert        raccourci pour convertir des fichiers audio
+1 nautilus-scripts-manager             raccourci pour exécuter des scripts perso
+1 nautilus-wallpaper                   fonds d'écran supplémentaires
+0
+t gnome
+1 gnome-audio                          fichiers audio supplémentaires
+1 gnome-backgrounds                    fonds d'écran supplémentaires
+1 gnome-exe-thumbnailer                miniature pour les éxécutables
+1 gnome-raw-thumbnailer                miniature pour les raw
+1 gnome-tweak-tool                     personnalisation de gnome
+1 gnome-shell                          autre type de bureau (gnome-shell --replace)
+1 ubuntu-restricted-extras             librairies supplémentaires
+0
+t themes
+1 electricsheep                        fond d'écran fractal
+1 gnome-color-chooser                  sélectionneur de couleurs
+1 gnome-color-manager                  gestionnaire de couleurs
+1 gnome-colors                         couleurs supplémentaires
+1 gnome-extra-icons                    icônes supplémentaires
+1 gnome-paint                          simple programme de dessin
+1 gnome-translate                      traducteur de textes
+0 screenlets                           afficheur de widgets
+0 screenlets-doc                       documentation des widgets
+0 screenlets-pack-all                  widgets supplémentaires
+0
+t accessoires
+1 backintime-gnome                     système de sauvegarde
+1 gedit-plugins                        plugins pour l'éditeur de textes
+0 parcellite                           gestionnaire de presse-papier
+1 pdfshuffler                          éditeur simple pour pdf
+1 pyrenamer                            renommeur de fichiers en masse
+1 virtualbox-ose                       solution de virtualisation
+1 wireshark                            analyseur réseau
+0
+t bureautique
+1 verbiste-gnome                       conjugaison française
+t fichier
+0 autofs                               montage automatique
+1 cifs-utils                           système de fichiers cifs
+1 furiusisomount                       TODO
+1 portmap                              TODO
+1 nfs-common                           système de fichiers nfs
+1 ntfsprogs                            utilitaires pour ntfs
+1 nrg2iso                              convertisseur nrg > iso
+1 unoconv                              convertisseur odt & co
+1 odt2txt                              convertisseur odt > txt
+0 pdftk                                travailler sur les PDFs !
+1 p7zip-full                           extracteur de 7zip
+1 p7zip-rar                            extracteur de rar
+1 tofrodos                             conversion dos<>unix de textes
+1 udftools                             extracteur de udf (iso 13346)
+1 unace-nonfree                        extracteur d'ace
+0
+t gimp
+1 gimp                                 éditeur d'image comme photoshop
+1 gimp-data-extras                     brosses &co supplémentaires pour gimp
+0 gimp-dcraw                           plugin gimp pour ouvrir un raw (pourri)
+1 gimp-dds                             plugin gimp pour ouvrir un dds
+1 gimp-dimage-color                    TODO
+1 gimp-gap                             TODO
+1 gimp-gluas                           TODO
+1 gimp-gutenprint                      TODO
+1 gimp-help-fr                         TODO
+0 gimp-normalmap                       TODO
+1 gimp-plugin-registry                 TODO
+1 gimp-resynthesizer                   TODO
+1 gimp-texturize                       TODO
+1 gimp-ufraw                           plugin gimp pour ouvrir un raw
+1 povray                               TODO
+0
+t graphisme
+1 blender
+1 djvulibre-bin                        utilitaires djvu
+1 djvulibre-desktop                    plugin djvu pour ubuntu
+1 djvulibre-plugin                     plugin djvu pour navigateur
+0 digikam                              gestionnaire de photos
+0 digikam-doc                          documentation du gestionnaire de photos
+1 gthumb                               navigateur d'images
+1 hugin                                générateur de panoramique
+1 imagemagick                          convertisseur de formats d'image
+1 Inkscape                             Dessin vectoriel (SVG)
+1 qtpfsgui                             fusion d'images pour le HDR
+1 ufraw                                décodeur de photo au format raw
+1 xsane                                acquisition d'images (scanner, webcam)
+0
+t internet
+1 chromium-browser                     navigateur léger et fonctionnel
+1 chromium-codecs-ffmpeg-extra         codecs supplémentaires pour chromium
+1 skype                                je pense que vous connaissez ;-)
+0
+t jeux
+1 foobillard                           jeu de billard
+1 gnome-breakout                       jeu breakout
+1 gnome-games                          jeux supplémentaires
+1 gnome-mastermind                     jeu mastermind
+1 gnome-hearts                         jeu coeurs
+1 playonlinux                          superbe interface d'émulation avec Wine
+0
+t programmation
+1 cgal-.*                              c++ library for computational geometry
+1 codeblocks                           ide C/C++
+1 codeblocks-contrib                   plugins pour codeblocks
+1 doxygen-gui                          TODO
+1 fontforge                            éditeur de police
+1 fontforge-doc                        documentation pour l'éditeur de police
+1 fontforge-extras                     extras pour l'éditeur de police
+1 g++                                  compilateur c++
+1 galax                                TODO xquery xml
+1 gedit-developer-plugins              plugin développeurs pour l'éditeur de textes
+1 git-core                             gestionnaire de version
+0 ilcontrast                           voir les librairies utilisées (mono)
+1 libtaoframework-.*                   toutes les librairies tao c
+1 taoframework-examples                exemples de la librairie tao c
+1 meld                                 visionneuse de différences
+1 monodevelop                          ide pour la librairie C mono
+1 monodevelop-.*                       toutes les extenions de monodevelop
+1 monodoc-browser                      TODO
+0 monodoc-.*^\(6.0).*                  toute la documentation de monodevelop
+1 nemiver                              TODO
+1 statsvn                              Statistiques sur un dépôt SVN
+0
+t système
+1 gdebi                                simple installateur de paquet
+0 gnome-device-manager                 gestionnaire de périphériques
+0 gnome-phone-manager                  gestionnaire de téléphone (pourri)
+0 multisync                            synchroniser les contacts !
+0 wammu                                sauvegarder un sony ericsson !
+0 gmountiso                            monteur d'image iso
+1 grsync                               synchronisation de dossiers
+0 localepurge                          nettoyage des langues inutiles
+1 rsnapshot                            backup incrémental
+0
+t science
+1 fraqtive
+1 gnome-genius                         calculatrice poussée
+1 octave3.2
+1 stellarium                           planétarium 3D
+0
+t sonvidéo
+1 audacity                             studio d'édition audio
+0 avidemux                             studio d'édition vidéo
+1 cheese                               utilitaire pour la webcam
+1 eyed3                                réparation des tag's mp3
+1 freeguide                            guide TV
+0 gecko-mediaplayer                    lecteur multimedia
+0 gnome-alsamixer                      mixeur audio (basé sur alsa)
+0 gtkpod                               gestionnaire d'iPods
+0 jokosher                             studio d'édition audio (partitions)
+1 kid3-qt                              éditeur de tag's mp3
+1 lame                                 très bon encodeur mp3 !
+0 mkvtoolnix-gui                       éditeur de fichiers mkv
+0 mplayer                              lecteur multimédia
+0 miro                                 récepteur de flux rss vidéo
+1 pitivi                               studio d'édition vidéo
+1 radiotray                            TODO
+1 rhythmbox                            gestionnaire audio
+1 smplayer                             lecteur multimedia
+1 sound-juicer                         extracteur de cd audio
+1 vlc                                  lecteur multimédia
+0
+t TODO
+0 atunes                               iTunes like
+0 Bombono-DVD                          Création de DVD
+0 Celtx                                Scénarisation
+0 Conky                                Monitoring PC
+0 Debian-Goodies                       Outils cools pour paquets
+0 DiffPDF                              Différence entre PDF's
+0 Forcemost                            Récupération de fichiers effacés
+0 FreeFileSync                         Synchronisation de fichiers
+0 Freemind                             Structurer sa pensée (mind mapping)
+0 Grisbi, Skrooge                      Gestion des finances
+0 JDownloader                          Téléchargements automatisés
+0 Lingot                               Accorder sa guitare
+0 Redmin                               Administration de projets
+0 Scribus                              PAO (mise en page, presse)
+0 Sunbird                              Agenda et calendrier
+0 Tracker                              Recherche sémantique sur PC
+0 uck                                  Live CD personnalisé
+0 Videolan Movie Creator               Editeur vidéo
+0 Videoporama                          Création de diaporamas
+0 Warmux                               Worms like
+0 WebGL                                OpenGL extension for the Web
+0 WinFF                                Interface visuelle pour ffmpeg
+0 Zotero                               Réseau social, gestion doc, réf biblio

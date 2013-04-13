@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+#lu-youtube2aac()
+{
+  techo "Ubuntu's Softwares Setup Menu [Packages and Scripts]"
+  techo '---------------------------- copyright David Fischer'
+  techo ''
+  pecho 'Convert a YouTube (movie) URL to an AAC file (with tags !)'
+  pecho ''
+
+  if [ $# -ne 1 -a $# -ne 3 ]; then
+    xecho "Usage: $(basename $0) 'YouTubeUrl/videoFilename' ['artistName' 'trackTitle']"
+  fi
+
+  autoInstall eyeD3 eyeD3
+  autoInstall youtube-dl youtube-dl
+  autoInstall ffmpeg ffmpeg
+  autoInstallLib libavcodec-extra-53
+  src=$(echo $1 | sed 's:https:http:')
+
+  if [ $# -eq 3 ]; then
+    artistName=$2
+    trackTitle=$3
+    name="$artistName - $trackTitle"
+  else
+    name=$$
+  fi
+
+  mecho 'Downloading video ...'
+  youtube-dl --output="$name.flv" "$src" || exit 1
+  src="$name.flv"
+  mecho 'Converting to song ...'
+  ffmpeg -i "$src" -vn -acodec copy "$name.aac"
+
+  if [ $# -eq 1 ]; then
+    recho 'Please write artist name and press enter :' ; read artistName
+    recho 'Please write track title and press enter :' ; read trackTitle
+  fi
+
+  mecho 'Updating id3 tags ...'
+  eyeD3 -a "$artistName" -t "$trackTitle" "$name.aac"
+
+  if [ $# -eq 1 ]; then
+    mv "$name.aac" "$artistName - $trackTitle.aac"
+  fi
+
+  mecho 'Goodbye !'
+}

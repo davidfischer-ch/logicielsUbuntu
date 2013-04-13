@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+#lu-svnStats()
+{
+  techo "Ubuntu's Softwares Setup Menu [Packages and Scripts]"
+  techo '---------------------------- copyright David Fischer'
+  techo ''
+  pecho 'Retrieve the log and use statsvn on a repository'
+  pecho ''
+
+  if [ $# -lt 2 -o $# -gt 3 ]; then
+    xecho "Usage: `basename $0` svnSourcePath statsDestPath [options]"
+  fi
+
+  svnSourcePath=$1
+  statsDestPath=$2
+
+  if [ $# -eq 3 ]
+  then options=$3
+  else options=''
+  fi
+
+  autoInstall statsvn statsvn
+
+  listing=/tmp/$$
+  trap "rm -f '$listing' 2>/dev/null" INT TERM EXIT
+
+  mecho '1/2 getting repository verbose log ...'
+  url=`svn status "$svnSourcePath" | grep ^URL | sed 's/URL.*: //'`
+  svn log -v --xml "$svnSourcePath" > $listing
+
+  mecho '2/2 using statsvn to generate statistics ...'
+  mkdir -p "$statsDestPath" 2>/dev/null
+  statsvn $options $listing "$svnSourcePath" -output-dir "$statsDestPath"
+}

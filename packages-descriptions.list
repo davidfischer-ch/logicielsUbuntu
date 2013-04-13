@@ -1,0 +1,112 @@
+compizconfig-settings-manager Gestionnaire de configuration des paramètres de Compiz
+gparted Éditeur de partition GNOME
+gsmartcontrol Interface utilisateur graphique pour smartctl
+iftop affichage d'informations sur l'utilisation de la bande passante d'une interface réseau
+iotop simple top-like I/O monitor
+preload adaptive readahead daemon
+inetutils-traceroute trace the IPv4 route to another host traceroute Traces the route taken by packets over an IPv4/IPv6 network
+nautilus-actions Extension Nautilus servant à configurer les programmes à lancer
+nautilus-open-terminal nautilus plugin for opening terminals in arbitrary paths
+nautilus-script-audio-convert Un script Nautilus de conversion audio
+nautilus-scripts-manager outil simple de gestion des scripts Nautilus
+nautilus-wallpaper Nautilus extension. Add a set as wallpaper entry in context menu
+gnome-audio fichiers audio pour GNOME
+gnome-backgrounds Set of backgrounds packaged with the GNOME desktop
+gnome-exe-thumbnailer Wine .exe and other executable thumbnailer for Gnome
+gnome-raw-thumbnailer RAW file thumbnailer for GNOME
+gnome-tweak-tool tool to adjust advanced configuration settings for GNOME
+gnome-shell Shell graphique pour le bureau GNOME
+ubuntu-restricted-extras Commonly used restricted packages for Ubuntu
+electricsheep Rêve collectif d'ordinateurs endormis sur économiseur d'écran
+gnome-color-chooser outil de personnalisation d'apparence du bureau GTK+/GNOME
+gnome-color-manager Color management integration for the GNOME desktop environment
+gnome-colors set of GNOME icon themes
+gnome-extra-icons Optional GNOME icons
+gnome-paint simple, easy to use paint program for GNOME
+gnome-translate Interface GNOME à libtranslate
+backintime-gnome Interface GNOME pour backintime
+gedit-plugins set of plugins for gedit
+pdfshuffler merge, split and re-arrange pages from PDF documents
+pyrenamer outil écrit en PyGTK pour renommer des fichiers en masse
+virtualbox-ose transitional package for virtualbox
+wireshark analyseur de trafic réseau - version GTK+
+verbiste-gnome French and Italian conjugator - GNOME interface
+cifs-utils Common Internet File System utilities
+furiusisomount ISO, IMG, BIN, MDF and NRG image management utility
+rpcbind converts RPC program numbers into universal addresses
+nfs-common NFS support files common to client and server
+ntfsprogs read/write NTFS driver for FUSE (transitional package)
+nrg2iso Extracts ISO9660 data from Nero .nrg files
+unoconv converter between LibreOffice document formats
+odt2txt convertisseur simple de format OpenDocument Text (ODT) vers texte brut
+p7zip-full 7z and 7za file archivers with high compression ratio
+p7zip-rar Module rar non-libre pour p7zip
+tofrodos Converts DOS <-> Unix text files, alias tofromdos
+udftools tools for UDF filesystems and DVD/CD-R(W) drives
+unace-nonfree extract, test and view .ace archives (non-free version)
+gimp The GNU Image Manipulation Program
+gimp-data-extras Jeu supplémentaire de brosses, palettes et dégradés pour The GIMP
+gimp-dds DDS (DirectDraw Surface) plugin for the gimp
+gimp-dimage-color GIMP plugin to convert Minolta DiMAGE pictures to sRGB colour space
+gimp-gap animation package for the GIMP
+gimp-gluas Lua environment plug-in for GIMP
+gimp-gutenprint print plugin for the GIMP
+gimp-help-fr Documentation for the GIMP (French)
+gimp-plugin-registry repository of optional extensions for GIMP
+gimp-plugin-registry repository of optional extensions for GIMP gimp-resynthesizer Transitional package for gimp-plugin-registry
+gimp-texturize generates large textures from a small sample
+gimp-ufraw gimp importer for raw camera images
+blender Very fast and versatile 3D modeller/renderer
+djvulibre-bin Utilities for the DjVu image format
+djvulibre-desktop Desktop support for the DjVu image format
+djview-plugin Browser plugin for the DjVu image format djvulibre-plugin Transition package, djvulibre-plugin to djview-plugin
+gthumb image viewer and browser
+hugin panorama photo stitcher - GUI tools
+imagemagick programmes de manipulation d'image graphicsmagick-imagemagick-compat image processing tools providing ImageMagick interface
+inkscape Programme de dessin vectoriel
+qtpfsgui luminance-hdr transitional package
+ufraw importateur autonome de photos numériques brutes
+xsane interface graphique complète pour le programme de gestion de scanners SANE
+chromium-browser Navigateur Web Chromium
+chromium-codecs-ffmpeg-extra Extra ffmpeg codecs for the Chromium Browser
+foobillard 3D billiards game using OpenGL
+gnome-breakout Clone du jeu classique Breakout pour GNOME
+gnome-games games for the GNOME desktop
+gnome-mastermind Clône du Mastermind (TM) pour l'environnement de bureau GNOME
+gnome-hearts dame de cœur, le jeu de cartes classique pour GNOME
+playonlinux interface pour Wine
+codeblocks Code::Blocks integrated development environment (IDE)
+codeblocks-contrib contrib plugins for Code::Blocks IDE
+doxygen-gui GUI configuration tool for doxygen
+fontforge Editeur de polices
+fontforge-doc Documentation for FontForge
+fontforge-extras Additional data and utilities for FontForge
+galax implémentation de XQuery avec un typage statique - interface en ligne de commande
+gedit-developer-plugins A set of gedit plugins for developers
+git fast, scalable, distributed revision control system git-core fast, scalable, distributed revision control system (obsolete)
+libtaoframework-devil-cil-dev Tao CLI binding for DevIL - development files libtaoframework-devil1.6-cil Tao CLI binding for DevIL libtaoframework-ffmpeg-cil-dev Tao CLI binding for FFmpeg - development files libtaoframework-ffmpeg0.4-cil Tao CLI binding for FFmpeg libtaoframework-freeglut-cil-dev Tao CLI binding for freeglut - development files libtaoframework-freeglut2.4-cil Tao CLI binding for freeglut libtaoframework-freetype-cil-dev Tao CLI binding for FreeType - development files libtaoframework-freetype2.3-cil Tao CLI binding for FreeType libtaoframework-ftgl-cil-dev Tao CLI binding for FTGL - development files libtaoframework-ftgl2.1-cil Tao CLI binding for FTGL libtaoframework-ode-cil-dev Tao CLI binding for ODE - development files libtaoframework-ode0.9-cil Tao CLI binding for ODE libtaoframework-openal-cil-dev Tao CLI binding for OpenAL - development files libtaoframework-openal1.1-cil Tao CLI binding for OpenAL libtaoframework-opengl-cil-dev Tao CLI binding for OpenGL and GLU - development files libtaoframework-opengl3.0-cil Tao CLI binding for OpenGL and GLU libtaoframework-physfs-cil-dev Tao CLI binding for PhysicsFS - development files libtaoframework-physfs1.0-cil Tao CLI binding for PhysicsFS libtaoframework-sdl-cil-dev Tao CLI binding for SDL - development files libtaoframework-sdl1.2-cil Tao CLI binding for SDL libtaoframework-lua-cil-dev Tao CLI binding for Lua - development files libtaoframework-lua5.1-cil Tao CLI binding for Lua
+taoframework-examples examples for all Tao libraries
+meld Outil graphique pour différencier et fusionner des fichiers
+monodevelop Environnement de développement pour GNOME
+monodevelop-database Database plugin for MonoDevelop monodevelop-debugger-gdb GNU Debugger plugin for MonoDevelop monodevelop-monogame Free implementation of XNA - IDE integration monodevelop-nunit NUnit plugin for MonoDevelop monodevelop-versioncontrol VersionControl plugin for MonoDevelop
+monodoc-browser Visionneuse Monodoc basée sur GTK+
+nemiver débogueur graphique autonome pour GNOME
+statsvn SVN repository statistics
+gdebi simple tool to install deb files - GNOME GUI
+grsync Interface GTK+ pour rsync
+rsnapshot local and remote filesystem snapshot utility
+fraqtive tracer des fractales de Mandelbrot et Julia
+gnome-genius Outil de calcul avancé multi-usages (interface GNOME)
+stellarium real-time photo-realistic sky generator
+audacity fast, cross-platform audio editor
+cheese tool to take pictures and videos from your webcam
+eyed3 Display and manipulate id3-tags on the command-line
+kid3-qt Éditeur d'étiquette de fichier audio
+lame MP3 encoding library (frontend)
+pitivi Editeur audio/vidéo non linéaire utilisant GStreamer
+radiotray online radio streaming player
+rhythmbox Gestionnaire et lecteur de musique GNOME
+smplayer complete front-end for MPlayer and MPlayer2
+sound-juicer Encodeur de CD GNOME
+vlc multimedia player and streamer
+

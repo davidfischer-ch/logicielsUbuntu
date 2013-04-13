@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+#lu-pyublasCompile()
+{
+  techo "Ubuntu's Softwares Setup Menu [Packages and Scripts]"
+  techo '---------------------------- copyright David Fischer'
+  techo ''
+  pecho 'Compile a .cpp file to use as a python extension'
+  mecho 'See http://documen.tician.de/pyublas/index.html'
+  pecho ''
+
+  if [ $# -ne 1 ]; then
+    xecho "Usage: $(basename $0) extension"
+  fi
+
+  autoInstall python python
+  autoInstallLib libboost-python-dev
+  # FIXME maybe another requried package to install
+  version=$(python --version 2>&1)
+  version=$(expr match "$version" '.* \([0-9]\.[0-9]\).*')
+  python=python$version
+  i_python=/usr/include/$python
+  i_pyublas=/usr/local/lib/$python/dist-packages/pyublas/include
+  [ ! -d "$i_pyublas" ] && $udo pip install pyublas
+
+  g++ -I$i_python -I$i_pyublas -fPIC -g -fpic -shared "$1.cpp" -lboost_python -l$python -o "$1.so"
+}

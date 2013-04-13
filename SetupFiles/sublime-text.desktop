@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Sublime Text 2
+GenericName=Sublime Text
+X-GNOME-FullName=Sublime Text 2
+Comment=Sophisticated text editor
+Type=Application
+Categories=Application;Development;Python;PHP;BASH;IDE;Programming
+Exec=/usr/local/SublimeText/sublime_text
+TryExec=/usr/local/SublimeText/sublime_text
+Terminal=false
+StartupNotify=true
+Icon=/usr/local/SublimeText/Icon/256x256/sublime_text.png

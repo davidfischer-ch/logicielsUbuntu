@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+canonMP560Repack()
+{
+  dpkg -x $1.deb common
+  dpkg --control $1.deb
+  cat DEBIAN/control | grep -v Depends > DEBIAN/control.new
+  rm -f DEBIAN/control
+  mv -f DEBIAN/control.new DEBIAN/control
+  mv -f DEBIAN common
+  dpkg -b common $1.deb
+  rm -rf common
+}
+
+canonMP560SetupDescription="Drivers for the Canon MP560"
+canonMP560SetupStatus()
+{
+  return $false
+}
+canonMP560Setup()
+{
+  cd 'SetupFiles/canonMP560'
+
+  #if  [ "`uname -a | grep _64`" ]; then
+  #  autoInstallSetup getlibsSetup getlibs
+  #  $udo getlibs -p libgimp2.0
+  #  $udo getlibs -p libc6
+  #fi
+
+  pack='cnijfilter-mp560series-3.20-1-i386-deb'
+  deb1='cnijfilter-common_3.20-1_i386'
+  deb2='cnijfilter-mp560series_3.20-1_i386'
+  tar -xzf $pack.tar.gz
+  cd $pack/packages
+  if  [ "`uname -a | grep _64`" ]; then
+    eval $install ia32-libs cups libcups2 libcups2-dev build-essential
+    canonMP560Repack $deb1
+    canonMP560Repack $deb2
+  fi
+  $udo dpkg -iG --force-architecture $deb1.deb
+  $udo dpkg -iG --force-architecture $deb2.deb
+  cd ../..
+  rm -rf $pack
+
+  pack='scangearmp-mp560series-1.40-1-i386-deb'
+  deb1='scangearmp-common_1.40-1_i386'
+  deb2='scangearmp-mp560series_1.40-1_i386'
+  tar -xzf $pack.tar.gz
+  cd $pack/packages
+  if  [ "`uname -a | grep _64`" ]; then
+    canonMP560Repack $deb1
+    canonMP560Repack $deb2
+  fi
+  $udo dpkg -iG --force-architecture $deb1.deb
+  $udo dpkg -iG --force-architecture $deb2.deb
+  cd ../..
+  rm -rf $pack
+  cd ../..
+
+  eval $service cups restart
+
+  yesOrNo 0 "install Xsane (advanced scanning software)"
+  if [ $REPLY -eq $true ]; then
+    eval $install xsane
+  fi
+
+  yesOrNo 0 "open Canon MP560 webpage"
+  if [ $REPLY -eq $true ]; then
+    firefox http://fr.canon.ch/Support/Consumer_Products/products/Fax__Multifunctionals/InkJet/PIXMA_MP_series/MP560.aspx?type=download&page=1
+  fi
+
+  system-config-printer
+}

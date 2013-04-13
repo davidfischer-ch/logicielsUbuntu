@@ -1,0 +1,36 @@
+# FIXME generate a hierarchical menu (tree) with categories as main nodes
+# FIXME handle specials packages, like cgal-*
+# FIXME handle scripts .sh find . -name "*.sh"
+# FIXME sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
+# FIXME sudo sed -i 's/vm.swappiness=.*/vm.swappiness=10/g' /proc/sys/vm/swappiness
+# tracker-gui
+# confluence ? (VHDL)
+# ghdl freehdl ?
+# bootchart
+# -== Commandes utiles ==-
+# lscpu -cat /proc/cpuinfo
+# -== Sites ==-
+# .42					Sites partage connaissances
+# penguspy.com				Site de jeux sur linux
+# www.openinventionnetwork.com		Open invention network
+# www.opengameart.org			Eléments graphiques pour jeux
+# www.ubuntu.com/certification/catalog	Liste du matériel compatible
+# http://joshcollie.deviantart.com/art/Ubuntu-Redesign-WIP-5-190970934
+# -== Plugins pour Compiz ==-
+# compiz-fusion-bcop
+# compiz-dev
+# build-essential
+# libtool
+# libglu1-mesa-dev
+# libxss-dev
+# libcairo2-dev
+# git-core
+# git clone git://anongit.compiz.org/users/soreau/scripts
+# cd Scripts
+# ./compiz-addons install all
+# aussi epidermis, lx-appearance
+# -== Extensions pour Firefox ==-
+# Readit Later
+# Interclue
+# apt-get install aptitude
+# aptitude search '~i!~M(!~tubuntu-desktop!~tminimal!~tstandard!~tprint-server)'
