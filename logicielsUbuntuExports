@@ -47,14 +47,4 @@ if ! grep "alias ls='ls --color=tty'" $settings >/dev/null; then
   echo "Colored LS successfully appended to $settings"
 fi
 
-export PATH=$PATH:"$LU_PATH"
-
-here=`pwd`
-cd "$LU_PATH/.."
-base="`pwd`"
-for dir in *; do
-  if [ -d "$dir/Scripts" ]; then
-    export PATH=$PATH:"$base/$dir/Scripts"
-  fi
-done
-cd "$here"
+export PATH=$PATH:"$LU_PATH:$LU_PATH/Scripts"
