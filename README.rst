@@ -28,7 +28,7 @@ What's Next ?
 
     * update - to update description of packages helped by the package manager
     * packages - a kind of minimalistic *aptitude* containing a personal selection of apt-get'able softwares
-    * scripts - to access to the setup scripts of PPA or wget based softwares (e.g. XBMC, not hosted in the official repositories)
+    * scripts - to access to setup scripts of softwares that are available to install on a dedicated PPA repository or by downloading an archive with wget (e.g. XBMC, not hosted in the official repositories)
 
 * lu-* : a set of utilities (scripts) that you can call from your terminal
 
