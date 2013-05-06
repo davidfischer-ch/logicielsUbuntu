@@ -34,8 +34,10 @@ nemoSetupStatus()
 }
 nemoSetup()
 {
-  if ! addAptPpaRepo ppa:gwendal-lebihan-dev/cinnamon-stable nemo; then
+  if ! addAptPpaRepo ppa:gwendal-lebihan-dev/cinnamon-stable gwendal; then
     return $true
   fi
   eval $install nemo nemo-fileroller || return $false
+  $udo sed -i 's/NoDisplay=true/NoDisplay=false/g' \
+    /etc/xdg/autostart/nemo-autostart.desktop
 }
