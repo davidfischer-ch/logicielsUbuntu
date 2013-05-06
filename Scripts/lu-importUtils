@@ -37,8 +37,8 @@
   pecho 'FileXYZ.lu-dep + logicielsUbuntuUtils -> FileXYZ'
   pecho ''
 
-  if [ $# -ne 2 ]; then
-    xecho "Usage: `basename $0` searchPath autoCommit (yes/no)"
+  if [ $# -ne 1 ]; then
+    xecho "Usage: `basename $0` searchPath"
   fi
 
   listing=/tmp/$$
@@ -49,8 +49,5 @@
     dst=`dirname $src`/`basename $src .lu-dep`
     mecho "generating $dst from `basename $src`"
     cat "$src" "$LU_PATH/logicielsUbuntuUtils" > "$dst"
-    if [ "$2" = 'yes' ]; then
-      svn commit "$dst" -m 'logiciels ubuntu utils imported'
-    fi
   done < $listing
 }
