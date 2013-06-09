@@ -40,4 +40,9 @@ nemoSetup()
   eval $install nemo nemo-fileroller || return $false
   $udo sed -i 's/NoDisplay=true/NoDisplay=false/g' \
     /etc/xdg/autostart/nemo-autostart.desktop
+
+  # http://www.fandigital.com/2013/01/set-nemo-default-file-manager-ubuntu.html
+  xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+  gsettings set org.gnome.desktop.background show-desktop-icons false
+  gsettings set org.nemo.desktop show-desktop-icons true
 }
