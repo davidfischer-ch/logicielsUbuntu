@@ -11,10 +11,8 @@
 0 LA LISTE
 0
 t preferences
-1 compiz-fusion-plugins-extra          effects supplémentaires compiz
 1 compizconfig-settings-manager        configurateur de compiz
 0 gpointing-device-settings            gestionnaire de pavé tactile
-1 myunity                              configuration d'unity
 0
 t administration
 0 autopsy                              logiciel de forensik
@@ -34,7 +32,6 @@ t nautilus
 1 nautilus-open-terminal               raccourci pour ouvrir un terminal
 1 nautilus-script-audio-convert        raccourci pour convertir des fichiers audio
 1 nautilus-scripts-manager             raccourci pour exécuter des scripts perso
-1 nautilus-wallpaper                   fonds d'écran supplémentaires
 0
 t gnome
 1 gnome-audio                          fichiers audio supplémentaires
@@ -63,7 +60,7 @@ t accessoires
 0 parcellite                           gestionnaire de presse-papier
 1 pdfshuffler                          éditeur simple pour pdf
 1 pyrenamer                            renommeur de fichiers en masse
-1 virtualbox-ose                       solution de virtualisation
+1 virtualbox                           solution de virtualisation
 1 wireshark                            analyseur réseau
 0
 t bureautique
@@ -74,7 +71,7 @@ t fichier
 1 furiusisomount                       TODO
 1 portmap                              TODO
 1 nfs-common                           système de fichiers nfs
-1 ntfsprogs                            utilitaires pour ntfs
+1 ntfs-3g                              utilitaires pour ntfs
 1 nrg2iso                              convertisseur nrg > iso
 1 unoconv                              convertisseur odt & co
 1 odt2txt                              convertisseur odt > txt
@@ -100,7 +97,6 @@ t gimp
 1 gimp-resynthesizer                   TODO
 1 gimp-texturize                       TODO
 1 gimp-ufraw                           plugin gimp pour ouvrir un raw
-1 povray                               TODO
 0
 t graphisme
 1 blender
@@ -125,7 +121,6 @@ t internet
 t jeux
 1 foobillard                           jeu de billard
 1 gnome-breakout                       jeu breakout
-1 gnome-games                          jeux supplémentaires
 1 gnome-mastermind                     jeu mastermind
 1 gnome-hearts                         jeu coeurs
 1 playonlinux                          superbe interface d'émulation avec Wine
@@ -167,7 +162,7 @@ t système
 t science
 1 fraqtive
 1 gnome-genius                         calculatrice poussée
-1 octave3.2
+1 octave                               TODO
 1 stellarium                           planétarium 3D
 0
 t sonvidéo
@@ -175,7 +170,6 @@ t sonvidéo
 0 avidemux                             studio d'édition vidéo
 1 cheese                               utilitaire pour la webcam
 1 eyed3                                réparation des tag's mp3
-1 freeguide                            guide TV
 0 gecko-mediaplayer                    lecteur multimedia
 0 gnome-alsamixer                      mixeur audio (basé sur alsa)
 0 gtkpod                               gestionnaire d'iPods

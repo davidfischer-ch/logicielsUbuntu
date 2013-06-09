@@ -111,7 +111,7 @@ packages()
     script="$HOME/packages-selections-install.sh"
     echo "$udo apt-get -f install $selections || exit 1" > "$script"
     sh "$script" || xecho "$script failed, you can edit & run it manually to fix this"
-    generatePackagesEntries
+    setup
   fi
 }
 
