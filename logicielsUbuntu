@@ -134,7 +134,7 @@ scripts()
         cd "$LU_PATH"
       done
     fi
-    generateScriptsEntries
+    setup
   fi
 }
 
