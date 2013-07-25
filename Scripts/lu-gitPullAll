@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+#******************************************************************************#
+#               SOME SCRIPTS FOR MYSELF, AND WHY NOT FOR YOU TOO !
+#
+#  Author    : David Fischer
+#  Contact   : david.fischer.ch@gmail.com
+#  Project   : LogicielsUbuntu
+#  Copyright : 2009-2013 David Fischer. All rights reserved.
+#******************************************************************************#
+#
+# This file is part of LogicielsUbuntu.
+#
+# This project is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This project is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this project. If not, see <http://www.gnu.org/licenses/>
+#
+# Retrieved from:
+#   git clone https://github.com/davidfischer-ch/logicielsUbuntu.git
+
+. logicielsUbuntuCommon
+
+#lu-gitPullAll()
+{
+  techo "Ubuntu's Softwares Setup Menu [Packages and Scripts]"
+  techo '---------------------------- copyright David Fischer'
+  techo ''
+  pecho 'Git checkout (may create) and pull (update) all branches from origin'
+  pecho ''
+
+  repo_b=$(git branch | sed 's:\* ::;s: *$::g;s:^ *::g')
+  orig_b=$(git branch -r | grep origin | grep -vF '>' | sed 's:origin/::;s: *$::g;s:^ *::g')
+
+  for branch in $orig_b
+  do
+    if ! echo "$repo_b" | grep -q "$branch"; then
+      echo "Create local branch $branch"
+      git checkout -b "$branch" "origin/$branch" || \
+        xecho "Cannot create branch $branch, stash or commit your local modifications first"
+    fi
+    echo "Update local branch $branch"
+    git pull
+  done
+}
