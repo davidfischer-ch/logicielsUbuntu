@@ -37,16 +37,21 @@
   pecho 'Git checkout (may create) and pull (update) all branches from origin'
   pecho ''
 
+  autoInstall git-core git
+
   yesOrNo $true 'Delete all stale tracking branches under origin'
   if [ $REPLY -eq $true ]; then
     git remote prune origin
   fi
 
+  pecho 'Update (may create) all local branches from origin'
   repo_b=$(git branch | sed 's:\* ::;s: *$::g;s:^ *::g')
   orig_b=$(git branch -r | grep origin | grep -vF '>' | sed 's:origin/::;s: *$::g;s:^ *::g')
 
+  orig_menu=''
   for branch in $orig_b
   do
+    orig_menu="$orig_menu$orig_b $orig_b "
     if ! echo "$repo_b" | grep -q "$branch"; then
       mecho "Create local branch $branch"
       git checkout -b "$branch" "origin/$branch" || \
@@ -55,4 +60,30 @@
     mecho "Update local branch $branch"
     git pull || xecho "Cannot update branch $branch, stash or commit your local modifications first"
   done
+
+  # Branch selection menu
+  tmpfile=/tmp/$$
+  trap "rm -f '$tmpfile' 2>/dev/null" INT TERM EXIT
+  $DIALOG --backtitle 'LogicielsUbuntu - Git pull all' \
+          --menu 'Please select a branch to checkout' 0 0 0 \
+          $orig_menu 2> $tmpfile
+
+  retval=$?
+  branch=$(cat $tmpfile)
+  if [ $retval -eq 0 -a "$branch" ]; then
+    pecho "Checkout branch $branch"
+    git checkout "$branch"
+  fi
+
+  yesOrNo $true 'Initialise and update all submodules'
+  if [ $REPLY -eq $true ]; then
+    git submodule init && git submodule update
+  fi
+
+  yesOrNo $true 'Pull master branch of all submodules from origin'
+  if [ $REPLY -eq $true ]; then
+    git submodule foreach git pull origin master
+  fi
+
+  git submodule status
 }
