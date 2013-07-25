@@ -85,5 +85,6 @@
     git submodule foreach git pull origin master
   fi
 
+  pecho 'Status of all submodules'
   git submodule status
 }
