@@ -51,7 +51,7 @@
   orig_menu=''
   for branch in $orig_b
   do
-    orig_menu="$orig_menu$orig_b $orig_b "
+    orig_menu="$orig_menu$branch $branch "
     if ! echo "$repo_b" | grep -q "$branch"; then
       mecho "Create local branch $branch"
       git checkout -b "$branch" "origin/$branch" || \
