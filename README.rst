@@ -61,5 +61,4 @@ Alors, n'hésitez pas à me demander un compte en RW si vous désirez enrichir L
 
 Remarque : commentaires bienvenus / faites passer le message à votre voisin (utilisateurs d'Ubuntu)
 
-David Fischer
-david.fischer.ch at gmail dot com
+2013 - David Fischer
