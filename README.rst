@@ -1,6 +1,12 @@
 README
 ======
 
+Warning
+-------
+
+This project is not maintained.
+I switched to Ansible and Python3 for scripting.
+
 The Idea
 --------
 
