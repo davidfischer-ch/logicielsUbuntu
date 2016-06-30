@@ -5,7 +5,7 @@ Warning
 -------
 
 This project is not maintained.
-I switched to Ansible and Python3 for scripting.
+I switched to Ansible and Python3 for scripting see my projects `ansible-roles <https://github.com/davidfischer-ch/ansible-roles>`_ and `pytoolbox_bin <https://github.com/davidfischer-ch/pytoolbox_bin>`_.
 
 The Idea
 --------
